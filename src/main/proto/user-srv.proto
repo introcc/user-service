@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package com.intro.proto;
+
+service UserService {
+  rpc Register(RegisterRequest) returns (RegisterReply) {}
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateReply) {}
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenReply) {}
+  rpc GetProfile(GetProfileRequest) returns (GetProfileReply) {}
+}
+
+message RegisterRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message RegisterReply { string token = 1; }
+
+message AuthenticateRequest {
+  string email = 1;
+  string password = 2;
+  string login_ip = 3;
+}
+
+message AuthenticateReply { string token = 1; }
+
+message VerifyTokenRequest { string token = 1; }
+
+message VerifyTokenReply { uint32 id = 1; }
+
+message GetProfileRequest { uint32 id = 1; }
+
+message GetProfileReply { string username = 1; }
